@@ -1,13 +1,21 @@
 const mode = document.querySelector(".mode");
 const modeStatus = document.getElementById("mode-status");
 const imageMode = document.getElementById("image-mode");
+const box = document.querySelector(".box");
+
 mode.addEventListener("click", e=> {
     if(modeStatus.innerHTML=="light") {
         modeStatus.innerHTML="dark";
         imageMode.src = "img/icon-moon.svg";
+        document.body.classList.remove("dark-mode");
+        document.body.classList.add("light-mode");
+        box.classList.remove("dark-mode");
     } else {
         modeStatus.innerHTML="light";
         imageMode.src = "img/icon-sun.svg";
+        document.body.classList.add("dark-mode");
+        document.body.classList.remove("light-mode");
+        box.classList.add("dark-mode");
     }
 })
 
@@ -27,6 +35,10 @@ const local = document.getElementById("location");
 const blog = document.getElementById("blog");
 const userTwitter = document.getElementById("user_twitter");
 const company = document.getElementById("company");
+const infoUser = document.querySelector(".info-user");
+const warning = document.querySelector(".warning");
+const userNameError = document.getElementById("user-nameError");
+
 
 button.addEventListener("click", e=> {
     cargarApi();
@@ -34,9 +46,15 @@ button.addEventListener("click", e=> {
 
 function cargarApi() {
     fetch ('https://api.github.com/users/'+userName.value)
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            warning.classList.remove("hidden");
+            infoUser.classList.add("hidden");
+            userNameError.innerHTML = userName.value;
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log(data)
         avatar.src = data.avatar_url;
         nameComplete.innerHTML = data.name;
         login.innerHTML = "@" + data.login ;
@@ -49,7 +67,11 @@ function cargarApi() {
 
         var nuevaFecha = dia + " " + mes + " " + anio;
         join.innerHTML = "Joined " +  nuevaFecha;
-        bio.innerHTML = data.bio ;
+        if(data.bio==null) {
+            bio.innerHTML = "This profile has no bio";
+        } else {
+            bio.innerHTML = data.bio ;
+        }
         repos.innerHTML = data.public_repos ;
         followers.innerHTML = data.followers ;
         following.innerHTML = data.following ;
@@ -70,7 +92,10 @@ function cargarApi() {
         local.innerHTML = data.location ;
         blog.innerHTML = data.blog ;
         company.innerHTML = data.company ;
+        infoUser.classList.remove("hidden");
+        warning.classList.add("hidden");
     })
+    .catch(error => console.error(error))
 }
 
 

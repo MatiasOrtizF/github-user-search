@@ -5,24 +5,32 @@
 }
 
 :root {
-    --drakBlue: rgb(31, 42, 72);
+    --darkBlue: rgb(31, 42, 72);
     --veryDarkBlue: rgb(20,28,47);
+
+    --skyBlue: rgb(173, 184, 187);
+    --white : white;
+
     --veryBlue : rgb(0,121,254);
 }
 
 body {
-    color: white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 15px;
     gap: 15px;
 }
 .dark-mode {
     background-color: var(--veryDarkBlue);
+    color: white;
 }
+
 .light-mode {
-    background-color: rgb(244,274,255);
+    background-color: var(--skyBlue);
+    color: black;
 }
 
 nav {
@@ -30,13 +38,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px;
 }
 
 .mode {
     display: flex;
     gap: 10px;   
     text-transform: uppercase;
+    cursor: pointer;
 }
 .mode h4 {
     font-size: 17px;
@@ -48,10 +56,19 @@ nav {
 input {
     background: none;
     border-style: none;
+    width: 100%;
+    margin-left: 15px;
+    color: black;
+}
+.dark-mode>.searcher>input {
+    color: white;
 }
 ::placeholder {
+    color: black;
+    background: none;
+}
+.dark-mode>.searcher>::placeholder {
     color: white;
-    padding: 10px;
 }
 
 button {
@@ -60,40 +77,65 @@ button {
     border-style: none;
     padding: 15px 20px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .searcher {
-    background-color: var(--drakBlue);
+    background-color: rgba(255, 255, 255, 0.822);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 25px;
     border-radius: 15px;
     width: 100%;
+    margin: 20px 0px;
+}
+.dark-mode>.searcher {
+    background-color: var(--darkBlue);
 }
 
 .searcher img {
     width: 20px;
     height: 20px;
+    cursor: pointer;
+}
+
+.warning {
+    color: rgb(185, 4, 4);
+}
+.warning span {
+    color: black;
+}
+.dark-mode>.warning span {
+    color: white;
 }
 
 .info-user {
-    background-color: var(--drakBlue);
+    background-color: rgba(255, 255, 255, 0.822);
     padding: 25px;
     border-radius: 15px;
     width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-mode>.info-user {
+    background-color: var(--darkBlue);
 }
 
 .data {
     display: grid;
     grid-template-columns: 20% 80%;
-    margin-bottom: 25px;
-    gap: 20px;
 }
 
 .data img {
     width: 100%;
     border-radius: 100%;
+}
+.data-user {
+    margin-left: 20px;
 }
 #login{
     color: var(--veryBlue);
@@ -106,7 +148,7 @@ span {
 }
 
 .data-secondary {
-    background-color: var(--veryDarkBlue);
+    background-color: var(--skyBlue);
     display: flex;
     justify-content: space-between;
     border-radius: 15px;
@@ -114,27 +156,80 @@ span {
     text-align: center;
     margin: 25px 0px;
 }
+.dark-mode>.info-user>.data-secondary {
+    background-color: var(--veryDarkBlue);
+}
 
 .data-secondary p{
-    background-color: var(--veryDarkBlue);
     display: flex;
     flex-direction: column;
 }
 
 .links {
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-rows: 1fr;
+    gap: 10px;
 }
-
 .icons {
-    display: grid; 
-    gap: 10px;
+    display: flex;
+}
+.icons img{
+    margin-right: 10px;
+}
+.icons:first-child img {
+    margin-right: 17px;
+}
+@media (min-width:480px) {
+    .info-user {
+        height: 450px;
+    }
 }
 
-
-.user-links {
-    display: grid;
-    gap: 10px;
+@media (min-width:768px) {
+    body {
+        padding: 50px;
+    }
+    .box {
+        width: 700px;
+    }
+    .data {
+        grid-template-columns: 18% 82%;
+        gap: 0;
+    }
+    .data img {
+        width: 100%;
+    }
+    .data-user {
+        display: grid;
+        grid-template-rows: 1fr;
+        gap: 10px;
+        margin-left: 16px;
+    }
+    .no-bio {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    #join {
+        text-align: end;
+    }
+    .links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .icons {
+        display: flex;
+        gap: 15px;
+    }
+    .data-secondary {
+        margin-left: 20%;
+    }
+    .links {
+        margin-left: 20%;
+    }
 }
 
+.hidden {
+    display: none;
+}
 

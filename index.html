@@ -11,49 +11,62 @@
     <title>Frontend Mentor | GitHub user search app</title>
 </head>
 <body class="dark-mode">
-    <nav>
-        <h1>Profile Search</h1>
-        <div class="mode">
-            <h4 id="mode-status">light</h4>
-            <img id="image-mode" src="img/icon-sun.svg" alt="">
-        </div>
-    </nav>
-    <div class="searcher">
-        <img src="img/icon-search.svg" alt="">
-        <input id="user-name" type="text" placeholder="Search GitHub Profile">
-        <button id="button">Search</button>
-    </div>
-    <div class="info-user">
-        <div class="data">
-            <img id="avatar" src="" alt="avatar">
-            <div class="data-user">
-                <h3 id="name"></h3>
-                <h4 id="login"></h4>
-                <h4 id="join"></h4>
+    <div class="box dark-mode">
+        <nav>
+            <h1>Profile Search</h1>
+            <div class="mode">
+                <h4 id="mode-status">light</h4>
+                <img id="image-mode" src="img/icon-sun.svg" alt="">
             </div>
+        </nav>
+        <div class="searcher">
+            <img src="img/icon-search.svg" alt="">
+            <input id="user-name" type="text" placeholder="Search GitHub username...">
+            <button id="button">Search</button>
         </div>
-        <p id="bio"></p>
-        <div class="data-secondary">
-            <p>Repos<span id="repos"></span></p>
-            <p>Followers<span id="followers"></span></p>
-            <p>Following<span id="following"></span></p>
-        </div>
-            <div class="links">
-                <div class="icons">
-                    <img src="img/icon-location.svg" alt="">
-                    <img src="img/icon-website.svg" alt="">
-                    <img src="img/icon-twitter.svg" alt="">
-                    <img src="img/icon-company.svg" alt="">
+
+        <p class="warning hidden">The user "<span id="user-nameError"></span>" is not correct, please enter a valid one.</p>
+        
+        <div class="info-user hidden">
+            <div class="data">
+                <img id="avatar" src="" alt="avatar">
+                <div class="data-user">
+                    <div class="no-bio">
+                        <div class="name-username">
+                            <h3 id="name"></h3>
+                            <h4 id="login"></h4>
+                        </div>
+                        <h4 id="join"></h4>
+                    </div>
+                    <p id="bio"></p>
                 </div>
+            </div>
+            <div class="data-secondary">
+                <p>Repos<span id="repos"></span></p>
+                <p>Followers<span id="followers"></span></p>
+                <p>Following<span id="following"></span></p>
+            </div>
+                <div class="links">
+                    <div class="icons">
+                        <img src="img/icon-location.svg" alt="">
+                        <p id="location"> </p>
+                    </div>
+                    <div class="icons">
+                        <img src="img/icon-website.svg" alt="">
+                        <p id="blog"> </p>
+                    </div>
+                    <div class="icons"> 
+                        <img src="img/icon-twitter.svg" alt="">
+                        <p id="user_twitter"> </p>
+                    </div>
+                    <div class="icons">
+                        <img src="img/icon-company.svg" alt="">
+                        <p id="company"> </p>
+                    </div>
+                </div>
+        </div>
+    </div>
     
-                <div class="user-links">
-                    <p id="location"> </p>
-                    <p id="blog"> </p>
-                    <p id="user_twitter"> </p>
-                    <p id="company"> </p>
-                </div>
-            </div>
-    </div>
 </body>
 
 <script src="app.js"></script>
